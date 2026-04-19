@@ -45,3 +45,6 @@ Thumbs.db
 
 # local notes
 /prompt site web klaivia.md
+
+# MCP servers (contient des tokens API)
+/.mcp.json
