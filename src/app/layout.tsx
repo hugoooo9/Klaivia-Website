@@ -22,24 +22,47 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Klaivia Agency — Sites Web Premium & Automatisations IA",
+  title: "Klaivia | Agence Web & IA en Suisse — Sites qui convertissent 24/7",
   description:
-    "Klaivia conçoit des sites web premium et des systèmes d'intelligence artificielle qui génèrent des clients, automatisent vos tâches et font croître votre chiffre d'affaires — 24h/24.",
+    "Sites web premium, automatisations et agents IA pour PME, indépendants et startups en Suisse. Votre business tourne même quand vous dormez. Devis gratuit sous 48h.",
   keywords: [
-    "agence web",
-    "IA",
-    "intelligence artificielle",
-    "site web premium",
-    "automatisation",
-    "agent IA",
+    "agence web suisse",
     "création site internet",
+    "agent IA",
+    "automatisation IA",
+    "site web PME",
+    "chatbot entreprise",
   ],
+  authors: [{ name: "Klaivia" }],
   openGraph: {
-    title: "Klaivia Agency — Votre business tourne. Même quand vous dormez.",
+    title: "Klaivia | Votre business tourne. Même quand vous dormez.",
     description:
-      "Sites web premium. Automatisations IA. Résultats concrets.",
+      "Sites web premium & agents IA sur mesure pour PME et indépendants en Suisse. Réponse sous 48h.",
+    url: "https://klaivia.ch",
+    siteName: "Klaivia",
+    locale: "fr_CH",
     type: "website",
-    locale: "fr_FR",
+    images: [
+      {
+        url: "https://klaivia.ch/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Klaivia - Agence Web & IA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Klaivia | Agence Web & IA en Suisse",
+    description: "Sites premium & agents IA pour PME et indépendants.",
+    images: ["https://klaivia.ch/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://klaivia.ch",
   },
 };
 
