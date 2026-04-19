@@ -51,12 +51,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Klaivia | Agence Web & IA en Suisse",
-    description: "Sites premium & agents IA pour PME et indépendants.",
-    images: ["https://klaivia.ch/og-image.png"],
-  },
   robots: {
     index: true,
     follow: true,
