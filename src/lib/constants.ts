@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   shortName: "Klaivia",
   slogan: "Votre business tourne. Même quand vous dormez.",
   tagline: "Sites web premium & services IA sur mesure. On conçoit, on déploie, vous encaissez. Réponse garantie sous 48h.",
-  email: "contact@klaivia.com",
+  email: "contact@klaivia.ch",
   calendlyUrl: "/contact",
   year: 2025,
 };

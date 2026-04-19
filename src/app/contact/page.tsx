@@ -28,6 +28,7 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -59,10 +60,27 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate a submission (replace with real API endpoint later)
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Erreur lors de l'envoi");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : "Erreur réseau. Réessaie dans un instant.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -161,7 +179,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="text-xs text-gris-texte">Email</div>
-                    <div className="text-blanc text-sm">contact@klaivia.com</div>
+                    <div className="text-blanc text-sm">contact@klaivia.ch</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -239,6 +257,10 @@ export default function ContactPage() {
               >
                 {loading ? "Envoi en cours..." : "Recevoir ma stratégie IA gratuite →"}
               </motion.button>
+
+              {errorMsg && (
+                <p className="text-sm text-red-400 text-center">{errorMsg}</p>
+              )}
 
               <p className="text-xs text-gris-texte text-center flex items-center justify-center gap-1.5">
                 <Lock className="w-3.5 h-3.5 text-violet-glow" />
