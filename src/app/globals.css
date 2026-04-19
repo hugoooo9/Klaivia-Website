@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --noir-profond: #050505;
+  --noir-carte: #0A0A0A;
+  --noir-surface: #111111;
+  --violet-principal: #7C3AED;
+  --violet-glow: #A855F7;
+  --violet-subtil: rgba(124, 58, 237, 0.08);
+  --blanc: #F5F5F7;
+  --gris-texte: #A1A1AA;
+  --gris-border: #1E1E1E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--noir-profond);
+  color: var(--blanc);
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--noir-profond);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--violet-principal);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet-glow);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(124, 58, 237, 0.3);
+  color: var(--blanc);
+}
+
+/* Hide Spline watermark */
+spline-viewer::part(logo) {
+  display: none !important;
+}
+spline-viewer > canvas + div,
+spline-viewer #logo {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Glass card utility */
+.glass-card {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--gris-border);
+  border-radius: 16px;
+}
+
+/* Glow border on hover */
+.glow-hover {
+  transition: box-shadow 0.3s ease-out, border-color 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animated grid background */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
