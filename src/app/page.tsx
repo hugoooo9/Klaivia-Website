@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import BackgroundPlanet from "@/components/BackgroundPlanet";
 import Hero from "@/components/Hero";
 import Cibles from "@/components/Cibles";
 import ProblemSection from "@/components/ProblemSection";
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <BackgroundPlanet />
       <main>
         <Hero />
         <Cibles />

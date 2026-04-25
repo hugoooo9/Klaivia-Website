@@ -67,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${sora.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="font-inter bg-noir-profond text-blanc antialiased">
+      <body className="font-inter text-blanc antialiased">
         <Script
           src="https://unpkg.com/@splinetool/viewer@1.12.81/build/spline-viewer.js"
           type="module"

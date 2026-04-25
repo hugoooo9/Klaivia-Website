@@ -10,24 +10,6 @@ export default function CTAFinal() {
       id="cta-final"
       className="relative py-20 md:py-32 px-4 overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-noir-profond" />
-      {/* Subtle grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.15]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(124,58,237,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.15) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-        }}
-      />
-      {/* Offset violet glows for depth */}
-      <div className="absolute top-1/3 left-1/4 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-violet-principal/25 blur-[140px]" />
-      <div className="absolute -bottom-20 right-1/4 translate-x-1/2 w-[500px] h-[500px] rounded-full bg-violet-glow/20 blur-[140px]" />
-      {/* Top fade-in to blend with section above */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-noir-profond to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.h2
