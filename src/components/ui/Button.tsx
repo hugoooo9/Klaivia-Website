@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type AnimationProps } from "framer-motion";
 
 type ButtonVariant = "primary" | "secondary" | "outline";
 
@@ -12,6 +12,21 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
+// Shiny shimmer animation — sweeps across button on loop
+const shimmerAnim: AnimationProps = {
+  initial: { "--x": "100%" } as Record<string, string>,
+  animate: { "--x": "-100%" } as Record<string, string>,
+  transition: {
+    repeat: Infinity,
+    repeatType: "loop",
+    repeatDelay: 1,
+    type: "spring",
+    stiffness: 20,
+    damping: 15,
+    mass: 2,
+  },
+};
+
 export default function Button({
   children,
   variant = "primary",
@@ -20,7 +35,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 font-sora font-semibold rounded-xl px-8 py-4 text-sm md:text-base transition-all duration-300 cursor-pointer";
+    "relative overflow-hidden inline-flex items-center justify-center gap-2 font-sora font-semibold rounded-xl px-8 py-4 text-sm md:text-base transition-all duration-300 cursor-pointer";
 
   const variants: Record<ButtonVariant, string> = {
     primary:
@@ -30,6 +45,12 @@ export default function Button({
     outline:
       "bg-transparent text-blanc border border-gris-border hover:border-violet-principal/50 hover:text-violet-glow hover:scale-[1.02]",
   };
+
+  // Shimmer color tuned per variant
+  const shimmerColor =
+    variant === "primary"
+      ? "rgba(255,255,255,0.35)"
+      : "rgba(200,154,255,0.35)";
 
   const classes = `${base} ${variants[variant]} ${className}`;
 
@@ -41,8 +62,18 @@ export default function Button({
       onClick={onClick}
       className={classes}
       whileTap={{ scale: 0.97 }}
+      {...shimmerAnim}
     >
-      {children}
+      <span className="relative z-10 inline-flex items-center gap-2">
+        {children}
+      </span>
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background: `linear-gradient(-75deg, transparent calc(var(--x) + 20%), ${shimmerColor} calc(var(--x) + 25%), transparent calc(var(--x) + 100%))`,
+        }}
+      />
     </Component>
   );
 }

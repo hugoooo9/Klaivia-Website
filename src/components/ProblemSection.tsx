@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Button from "./ui/Button";
 
 /**
  * Section "Le vrai problème que personne ne vous dit" — Klaivia
@@ -258,12 +259,9 @@ export default function ProblemSection() {
 
         {/* CTA */}
         <div className="text-center mt-8">
-          <a
-            href="/contact"
-            className="inline-block px-10 py-4 rounded-xl font-sora font-semibold text-[15px] text-white tracking-wide bg-gradient-to-r from-violet-principal to-violet-glow shadow-glow hover:-translate-y-0.5 hover:shadow-glow-lg transition-all duration-200"
-          >
+          <Button href="/contact" variant="primary">
             Arrêtez de perdre du temps et de l&apos;argent →
-          </a>
+          </Button>
           <div className="mt-4 text-[12.5px] text-gris-texte">
             Réponse sous 48h
           </div>

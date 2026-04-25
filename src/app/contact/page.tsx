@@ -253,9 +253,30 @@ export default function ContactPage() {
                 type="submit"
                 disabled={loading}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-violet-principal to-violet-glow text-white font-sora font-semibold shadow-glow hover:shadow-glow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                initial={{ "--x": "100%" } as Record<string, string>}
+                animate={{ "--x": "-100%" } as Record<string, string>}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  repeatDelay: 1,
+                  type: "spring",
+                  stiffness: 20,
+                  damping: 15,
+                  mass: 2,
+                }}
+                className="relative overflow-hidden w-full py-4 rounded-xl bg-gradient-to-r from-violet-principal to-violet-glow text-white font-sora font-semibold shadow-glow hover:shadow-glow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Envoi en cours..." : "Recevoir ma stratégie IA gratuite →"}
+                <span className="relative z-10">
+                  {loading ? "Envoi en cours..." : "Recevoir ma stratégie IA gratuite →"}
+                </span>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 z-0"
+                  style={{
+                    background:
+                      "linear-gradient(-75deg, transparent calc(var(--x) + 20%), rgba(255,255,255,0.35) calc(var(--x) + 25%), transparent calc(var(--x) + 100%))",
+                  }}
+                />
               </motion.button>
 
               {errorMsg && (
