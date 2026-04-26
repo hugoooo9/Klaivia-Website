@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Brain, Code, Database, Globe, Target, TrendingUp, Zap, Sparkles, Workflow, Bot, Mail } from "lucide-react";
 import Button from "./ui/Button";
 import { METHODOLOGIE, SITE_CONFIG } from "@/lib/constants";
@@ -218,7 +217,7 @@ function MockupLaunch({ active }: MockupProps) {
   // Activity bars — clean vertical bars w/ wave-pulse
   const bars = Array.from({ length: 24 });
   return (
-    <div className="relative h-56 rounded-xl border border-violet-principal/20 bg-gradient-to-br from-violet-subtil/40 via-noir-profond/40 to-transparent p-5 overflow-hidden">
+    <div className="relative h-56 rounded-xl border border-violet-principal/20 bg-gradient-to-br from-violet-subtil/40 via-noir-profond/40 to-transparent p-5 overflow-hidden flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
@@ -236,18 +235,18 @@ function MockupLaunch({ active }: MockupProps) {
       </div>
 
       {/* Bars */}
-      <div className="flex items-end justify-between gap-1 h-20">
+      <div className="flex items-end justify-between gap-1 flex-1 mt-auto">
         {bars.map((_, i) => {
-          // Base sine height for natural wave
-          const base = 30 + Math.sin(i * 0.6) * 18 + Math.cos(i * 0.3) * 10;
+          // Ascending slope w/ slight jitter
+          const base = 38 + (i / (bars.length - 1)) * 55 + Math.sin(i * 0.9) * 3;
           return (
             <motion.div
               key={i}
               animate={active ? {
                 height: [
                   `${base}%`,
-                  `${Math.min(95, base + 30)}%`,
-                  `${Math.max(15, base - 10)}%`,
+                  `${Math.min(95, base + 6)}%`,
+                  `${Math.max(8, base - 5)}%`,
                   `${base}%`,
                 ],
               } : { height: `${base}%` }}
@@ -272,8 +271,6 @@ const MOCKUPS = [MockupContact, MockupDev, MockupStrategie, MockupLaunch];
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export default function Methodologie() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <section id="methodologie" className="relative py-20 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
@@ -299,7 +296,7 @@ export default function Methodologie() {
           {METHODOLOGIE.map((step, i) => {
             const Mockup = MOCKUPS[i];
             const span = "";
-            const active = hovered === i;
+            const active = true;
             return (
               <motion.div
                 key={step.step}
@@ -307,9 +304,7 @@ export default function Methodologie() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-                onHoverStart={() => setHovered(i)}
-                onHoverEnd={() => setHovered(null)}
-                className={`group relative rounded-2xl border border-gris-border bg-noir-surface/40 backdrop-blur-sm p-5 md:p-6 hover:border-violet-principal/40 transition-all duration-300 ${span}`}
+className={`group relative rounded-2xl border border-gris-border bg-noir-surface/40 backdrop-blur-sm p-5 md:p-6 hover:border-violet-principal/40 transition-all duration-300 ${span}`}
               >
                 <Mockup active={active} />
                 <div className="mt-5">

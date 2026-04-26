@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Star, Mail, ArrowRight, Send, Monitor, Calendar, Clock, ShieldCheck, RefreshCw, Headphones, Check } from "lucide-react";
+import { MessageSquare, Mail, ArrowRight, Send, Monitor, ShieldCheck, RefreshCw, Headphones, Check } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import Button from "./ui/Button";
 import {
@@ -15,28 +15,87 @@ function PortfolioVisual({ index }: { index: number }) {
   if (index === 0) {
     return (
       <div className="h-48 bg-gradient-to-br from-violet-principal/25 to-violet-glow/10 flex items-center justify-center relative overflow-hidden">
-        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 rounded-full bg-noir-profond/70 border border-violet-principal/30">
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 rounded-full bg-noir-profond/70 border border-violet-principal/30 z-10">
           <Monitor className="w-3 h-3 text-violet-glow" />
           <span className="text-[10px] text-violet-glow font-semibold tracking-wider uppercase">Site web</span>
         </div>
-        <div className="w-40 rounded-xl bg-noir-surface border border-gris-border p-3 shadow-xl">
-          <div className="w-full h-14 rounded-md bg-gradient-to-br from-violet-principal/30 to-violet-glow/20 mb-2.5 flex items-center justify-center gap-0.5">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-2.5 h-2.5 text-violet-glow fill-violet-glow" />
-            ))}
+        {/* Browser window */}
+        <div className="w-32 mt-6 rounded-lg bg-noir-surface border border-gris-border shadow-xl overflow-hidden">
+          {/* Chrome */}
+          <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gris-border bg-noir-profond/60">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-400/70" />
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-400/70" />
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400/70" />
+            <div className="ml-1.5 flex-1 h-2 rounded-sm bg-noir-surface border border-gris-border/50 flex items-center px-1">
+              <motion.div
+                animate={{ width: ["20%", "100%", "100%"] }}
+                transition={{ duration: 2, times: [0, 0.4, 1], repeat: Infinity, repeatDelay: 1 }}
+                className="h-0.5 rounded-full bg-violet-glow/60"
+              />
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 mb-1.5">
-            <Calendar className="w-2.5 h-2.5 text-violet-glow" />
-            <div className="w-16 h-1 bg-blanc/70 rounded" />
-          </div>
-          <div className="flex items-center gap-1.5 mb-2">
-            <Clock className="w-2.5 h-2.5 text-violet-glow" />
-            <div className="w-12 h-1 bg-gris-texte/50 rounded" />
-          </div>
-          <div className="w-full py-1 rounded-md bg-violet-principal/80 flex items-center justify-center">
-            <span className="text-[8px] font-bold text-blanc uppercase tracking-wider">Réserver</span>
+          {/* Page body */}
+          <div className="p-2.5 space-y-1.5">
+            {/* Hero band */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse", repeatDelay: 2.5 }}
+              className="w-full h-8 rounded bg-gradient-to-br from-violet-principal/40 to-violet-glow/20 flex items-center px-2 gap-1"
+            >
+              <div className="w-1 h-1 rounded-full bg-violet-glow" />
+              <div className="h-1 w-12 rounded-full bg-blanc/80" />
+            </motion.div>
+            {/* Text lines */}
+            <motion.div
+              animate={{ width: ["0%", "85%"] }}
+              transition={{ duration: 0.8, ease: "easeOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 2.2 }}
+              className="h-1 rounded-full bg-violet-principal/40"
+            />
+            <motion.div
+              animate={{ width: ["0%", "60%"] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 2.2 }}
+              className="h-1 rounded-full bg-violet-principal/25"
+            />
+            {/* Card row */}
+            <div className="grid grid-cols-3 gap-1 pt-0.5">
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  animate={{ opacity: [0, 1], y: [4, 0] }}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1, repeat: Infinity, repeatType: "reverse", repeatDelay: 2 }}
+                  className="h-5 rounded bg-noir-profond border border-violet-principal/20"
+                />
+              ))}
+            </div>
+            {/* CTA */}
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 0 0 rgba(168,85,247,0.6)",
+                  "0 0 0 5px rgba(168,85,247,0)",
+                ],
+              }}
+              transition={{ duration: 1.6, repeat: Infinity }}
+              className="w-16 py-1 rounded-md bg-gradient-to-r from-violet-principal to-violet-glow flex items-center justify-center"
+            >
+              <span className="text-[7px] font-bold text-blanc uppercase tracking-wider">Démarrer</span>
+            </motion.div>
           </div>
         </div>
+        {/* Cursor */}
+        <motion.div
+          animate={{
+            x: [-30, 18, 18, -30],
+            y: [-10, 28, 28, -10],
+          }}
+          transition={{ duration: 4, times: [0, 0.5, 0.7, 1], repeat: Infinity, ease: "easeInOut" }}
+          className="absolute pointer-events-none"
+        >
+          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-blanc drop-shadow" fill="currentColor">
+            <path d="M3 2l7 18 2.5-7.5L20 10z" />
+          </svg>
+        </motion.div>
       </div>
     );
   }
@@ -50,19 +109,38 @@ function PortfolioVisual({ index }: { index: number }) {
           <span className="text-[10px] text-violet-glow font-semibold tracking-wider uppercase">Agent IA</span>
         </div>
         <div className="flex flex-col gap-1.5 w-40">
-          <div className="self-start max-w-[75%] px-2.5 py-1.5 rounded-lg rounded-bl-sm bg-noir-surface border border-gris-border">
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: [0, 1, 1, 0], x: [-10, 0, 0, -10] }}
+            transition={{ duration: 4, times: [0, 0.15, 0.85, 1], repeat: Infinity }}
+            className="self-start max-w-[75%] px-2.5 py-1.5 rounded-lg rounded-bl-sm bg-noir-surface border border-gris-border"
+          >
             <div className="w-16 h-1 bg-gris-texte/60 rounded mb-1" />
             <div className="w-20 h-1 bg-gris-texte/40 rounded" />
-          </div>
-          <div className="self-end max-w-[75%] px-2.5 py-1.5 rounded-lg rounded-br-sm bg-violet-principal/80">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: [0, 0, 1, 1, 0], x: [10, 10, 0, 0, 10] }}
+            transition={{ duration: 4, times: [0, 0.3, 0.45, 0.85, 1], repeat: Infinity }}
+            className="self-end max-w-[75%] px-2.5 py-1.5 rounded-lg rounded-br-sm bg-violet-principal/80"
+          >
             <div className="w-14 h-1 bg-blanc rounded mb-1" />
             <div className="w-18 h-1 bg-blanc/70 rounded" />
-          </div>
-          <div className="self-start flex items-center gap-1 px-2 py-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-glow animate-pulse" />
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-glow animate-pulse [animation-delay:200ms]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-glow animate-pulse [animation-delay:400ms]" />
-          </div>
+          </motion.div>
+          <motion.div
+            animate={{ opacity: [0, 0, 1, 1, 0] }}
+            transition={{ duration: 4, times: [0, 0.6, 0.7, 0.85, 1], repeat: Infinity }}
+            className="self-start flex items-center gap-1 px-2 py-1.5"
+          >
+            {[0, 1, 2].map((i) => (
+              <motion.span
+                key={i}
+                animate={{ y: [0, -2, 0], opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15 }}
+                className="w-1.5 h-1.5 rounded-full bg-violet-glow"
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     );
@@ -77,34 +155,56 @@ function PortfolioVisual({ index }: { index: number }) {
       </div>
       <div className="flex items-center gap-1.5">
         <div className="flex flex-col gap-1.5">
-          <div className="w-12 h-7 rounded-md bg-noir-surface border border-gris-border flex items-center justify-center">
-            <Mail className="w-3 h-3 text-violet-glow/70" />
-          </div>
-          <div className="w-12 h-7 rounded-md bg-noir-surface border border-gris-border flex items-center justify-center">
-            <Mail className="w-3 h-3 text-violet-glow/70" />
-          </div>
-          <div className="w-12 h-7 rounded-md bg-noir-surface border border-gris-border flex items-center justify-center">
-            <Mail className="w-3 h-3 text-violet-glow/70" />
-          </div>
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{ x: [0, 18, 18, 0], opacity: [1, 1, 0, 1] }}
+              transition={{ duration: 3, times: [0, 0.35, 0.5, 0.7], repeat: Infinity, delay: i * 0.5 }}
+              className="w-12 h-7 rounded-md bg-noir-surface border border-gris-border flex items-center justify-center"
+            >
+              <Mail className="w-3 h-3 text-violet-glow/70" />
+            </motion.div>
+          ))}
         </div>
-        <ArrowRight className="w-3.5 h-3.5 text-violet-glow animate-pulse" />
-        <div className="w-14 h-14 rounded-lg bg-violet-principal/30 border border-violet-principal/60 flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+        <motion.div
+          animate={{ x: [0, 4, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.2, repeat: Infinity }}
+        >
+          <ArrowRight className="w-3.5 h-3.5 text-violet-glow" />
+        </motion.div>
+        <motion.div
+          animate={{
+            scale: [1, 1.08, 1],
+            boxShadow: [
+              "0 0 20px rgba(168,85,247,0.4)",
+              "0 0 30px rgba(168,85,247,0.8)",
+              "0 0 20px rgba(168,85,247,0.4)",
+            ],
+            rotate: [0, 6, 0],
+          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-14 h-14 rounded-lg bg-violet-principal/30 border border-violet-principal/60 flex items-center justify-center"
+        >
           <Send className="w-6 h-6 text-violet-glow" />
-        </div>
-        <ArrowRight className="w-3.5 h-3.5 text-violet-glow animate-pulse [animation-delay:300ms]" />
+        </motion.div>
+        <motion.div
+          animate={{ x: [0, 4, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
+        >
+          <ArrowRight className="w-3.5 h-3.5 text-violet-glow" />
+        </motion.div>
         <div className="flex flex-col gap-1.5">
-          <div className="w-16 rounded-md bg-noir-surface border border-gris-border p-1.5">
-            <div className="w-10 h-1 bg-violet-glow/80 rounded mb-1" />
-            <div className="w-8 h-1 bg-gris-texte/40 rounded" />
-          </div>
-          <div className="w-16 rounded-md bg-noir-surface border border-violet-principal/40 p-1.5">
-            <div className="w-10 h-1 bg-violet-glow/80 rounded mb-1" />
-            <div className="w-12 h-1 bg-gris-texte/40 rounded" />
-          </div>
-          <div className="w-16 rounded-md bg-noir-surface border border-gris-border p-1.5">
-            <div className="w-10 h-1 bg-violet-glow/80 rounded mb-1" />
-            <div className="w-8 h-1 bg-gris-texte/40 rounded" />
-          </div>
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              animate={{ opacity: [0, 1, 1], x: [-10, 0, 0] }}
+              transition={{ duration: 3, times: [0, 0.5, 1], repeat: Infinity, delay: i * 0.5 }}
+              className={`w-16 rounded-md bg-noir-surface ${i === 1 ? "border border-violet-principal/40" : "border border-gris-border"} p-1.5`}
+            >
+              <div className="w-10 h-1 bg-violet-glow/80 rounded mb-1" />
+              <div className={`${i === 1 ? "w-12" : "w-8"} h-1 bg-gris-texte/40 rounded`} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
