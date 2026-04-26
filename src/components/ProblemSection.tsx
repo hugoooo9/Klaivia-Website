@@ -146,7 +146,7 @@ export default function ProblemSection() {
                 <IconX className="w-4 h-4 text-rose-400" />
               </div>
               <div>
-                <div className="font-sora text-[11px] font-semibold tracking-[1.5px] uppercase text-rose-400">Sans Klaivia</div>
+                <div className="font-sora text-[11px] font-semibold tracking-[1.5px] uppercase text-rose-400">Sans IA</div>
                 <div className="text-[13px] text-gris-texte mt-0.5">Vous subissez</div>
               </div>
             </div>
@@ -187,7 +187,7 @@ export default function ProblemSection() {
                 <IconCheck className="w-4 h-4 text-violet-glow" />
               </div>
               <div>
-                <div className="font-sora text-[11px] font-semibold tracking-[1.5px] uppercase text-violet-glow">Avec Klaivia</div>
+                <div className="font-sora text-[11px] font-semibold tracking-[1.5px] uppercase text-violet-glow">Avec IA</div>
                 <div className="text-[13px] text-gris-texte mt-0.5">Vous dominez</div>
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function ProblemSection() {
 
         {/* CTA */}
         <div className="text-center mt-8">
-          <Button href="/contact" variant="primary">
+          <Button href="#cta-final" variant="primary">
             Arrêtez de perdre du temps et de l&apos;argent →
           </Button>
           <div className="mt-4 text-[12.5px] text-gris-texte">

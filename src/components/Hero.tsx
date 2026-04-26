@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
-import AnimatedCounter from "./ui/AnimatedCounter";
-import { HERO_STATS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function Hero() {
   return (
     <>
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-20 pb-0">
+    <section className="relative flex flex-col items-center justify-center px-4 pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Badge */}
         <Badge className="mb-8">
@@ -55,28 +54,6 @@ export default function Hero() {
           </Button>
         </motion.div>
 
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="glass-card py-8 px-6 md:px-12"
-        >
-          <p className="text-center font-sora font-semibold text-xs md:text-sm uppercase tracking-[0.25em] text-violet-glow mb-6">
-            Nos objectifs
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {HERO_STATS.map((stat) => (
-              <AnimatedCounter
-                key={stat.label}
-                value={stat.value}
-                prefix={stat.prefix}
-                suffix={stat.suffix}
-                label={stat.label}
-              />
-            ))}
-          </div>
-        </motion.div>
       </div>
 
       </section>

@@ -52,8 +52,8 @@ export default function AgentKlaivia() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Hide on /contact page
-  const hidden = pathname?.startsWith("/contact");
+  // Hide on legacy #cta-final path (route now removed but keep guard)
+  const hidden = pathname?.startsWith("#cta-final");
 
   // Persist messages
   useEffect(() => {
@@ -146,7 +146,7 @@ export default function AgentKlaivia() {
           next[next.length - 1] = {
             role: "assistant",
             content:
-              "Oups, une erreur est survenue. Remplis le formulaire ici /contact et on te répond vite !",
+              "Oups, une erreur est survenue. Remplis le formulaire ici #cta-final et on te répond vite !",
           };
           return next;
         });
@@ -390,7 +390,7 @@ export default function AgentKlaivia() {
             {/* Contact shortcut */}
             <div className="px-5 py-2 border-t border-gris-border">
               <a
-                href="/contact"
+                href="#cta-final"
                 className="flex items-center gap-2 px-3 py-2 rounded-xl bg-violet-subtil border border-violet-principal/20 text-violet-glow text-xs hover:bg-violet-principal/15 transition-all"
               >
                 <Mail className="w-4 h-4" />

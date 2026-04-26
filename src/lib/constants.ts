@@ -4,13 +4,13 @@ export const SITE_CONFIG = {
   slogan: "Votre business tourne. Même quand vous dormez.",
   tagline: "Sites web premium & services IA sur mesure. On conçoit, on déploie, vous encaissez. Réponse garantie sous 48h.",
   email: "contact@klaivia.ch",
-  calendlyUrl: "/contact",
+  calendlyUrl: "#cta-final",
   year: 2025,
 };
 
 export const NAV_LINKS = [
-  { label: "Services", href: "#services" },
   { label: "Processus", href: "#methodologie" },
+  { label: "Services", href: "#services" },
   { label: "Réalisations", href: "#confiance" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#cta-final" },
