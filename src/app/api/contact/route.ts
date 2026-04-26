@@ -2,10 +2,28 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, service, message } = await req.json();
+    const {
+      name,
+      email,
+      role,
+      company,
+      companySize,
+      budget,
+      service,
+      message,
+    } = await req.json();
 
     // Validation basique
-    if (!name || !email || !message) {
+    if (
+      !name ||
+      !email ||
+      !role ||
+      !company ||
+      !companySize ||
+      !budget ||
+      !service ||
+      !message
+    ) {
       return new Response(
         JSON.stringify({ error: "Champs requis manquants" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
@@ -45,9 +63,13 @@ export async function POST(req: Request) {
       <div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;background:#0A0A0A;color:#F5F5F7;border-radius:12px;">
         <h2 style="color:#A855F7;margin:0 0 16px;">Nouvelle demande via le formulaire Klaivia</h2>
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
-          <tr><td style="padding:8px 0;color:#A1A1AA;width:120px;">Nom</td><td style="padding:8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;width:160px;">Nom</td><td style="padding:8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#A1A1AA;">Email</td><td style="padding:8px 0;"><a href="mailto:${escapeHtml(email)}" style="color:#A855F7;">${escapeHtml(email)}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#A1A1AA;">Service</td><td style="padding:8px 0;">${escapeHtml(service || "—")}</td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;">Rôle</td><td style="padding:8px 0;">${escapeHtml(role)}</td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;">Entreprise</td><td style="padding:8px 0;"><strong>${escapeHtml(company)}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;">Taille</td><td style="padding:8px 0;">${escapeHtml(companySize)}</td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;">Budget</td><td style="padding:8px 0;"><strong style="color:#A855F7;">${escapeHtml(budget)}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#A1A1AA;">Service</td><td style="padding:8px 0;">${escapeHtml(service)}</td></tr>
         </table>
         <div style="margin-top:20px;padding:16px;background:#111111;border:1px solid #1E1E1E;border-radius:8px;">
           <div style="color:#A1A1AA;font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">Message</div>
@@ -57,13 +79,13 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    const text = `Nouvelle demande Klaivia\n\nNom: ${name}\nEmail: ${email}\nService: ${service || "—"}\n\nMessage:\n${message}`;
+    const text = `Nouvelle demande Klaivia\n\nNom: ${name}\nEmail: ${email}\nRôle: ${role}\nEntreprise: ${company}\nTaille: ${companySize}\nBudget: ${budget}\nService: ${service}\n\nMessage:\n${message}`;
 
     await transporter.sendMail({
       from: `"Klaivia Site" <${SMTP_USER}>`,
       to,
       replyTo: email,
-      subject: `Nouveau contact — ${name} (${service || "Sans service"})`,
+      subject: `Nouveau contact — ${name} (${company} • ${budget})`,
       text,
       html,
     });
