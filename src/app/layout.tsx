@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import NeonCursor from "@/components/NeonCursor";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -73,6 +74,7 @@ export default function RootLayout({
           type="module"
           strategy="afterInteractive"
         />
+        <NeonCursor />
         {children}
       </body>
     </html>

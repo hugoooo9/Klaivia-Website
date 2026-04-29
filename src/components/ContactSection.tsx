@@ -2,14 +2,12 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, User, MessageSquare, Sparkles, Lock, Briefcase, Building2, Users, Wallet } from "lucide-react";
+import { CheckCircle2, Mail, User, MessageSquare, Sparkles, Lock, Building2, Users } from "lucide-react";
 
 interface FormData {
   name: string;
-  role: string;
   company: string;
   companySize: string;
-  budget: string;
   email: string;
   service: string;
   message: string;
@@ -24,21 +22,11 @@ const services = [
 
 const companySizes = ["1-10", "10-50", "50-100", "100-500", "Plus de 500"];
 
-const budgets = [
-  "Moins de 2'000 CHF",
-  "2'000 - 5'000 CHF",
-  "5'000 - 10'000 CHF",
-  "10'000 - 25'000 CHF",
-  "Plus de 25'000 CHF",
-];
-
 export default function ContactSection() {
   const [form, setForm] = useState<FormData>({
     name: "",
-    role: "",
     company: "",
     companySize: "",
-    budget: "",
     email: "",
     service: "",
     message: "",
@@ -182,15 +170,6 @@ export default function ContactSection() {
                   placeholder="jean@exemple.com"
                 />
                 <Field
-                  icon={<Briefcase className="w-4 h-4" />}
-                  label="Votre rôle dans l'entreprise"
-                  name="role"
-                  value={form.role}
-                  onChange={handleChange}
-                  required
-                  placeholder="CEO, Directeur marketing..."
-                />
-                <Field
                   icon={<Building2 className="w-4 h-4" />}
                   label="Nom de l'entreprise"
                   name="company"
@@ -207,15 +186,6 @@ export default function ContactSection() {
                   onChange={handleChange}
                   required
                   options={companySizes}
-                />
-                <SelectField
-                  icon={<Wallet className="w-4 h-4" />}
-                  label="Budget du projet"
-                  name="budget"
-                  value={form.budget}
-                  onChange={handleChange}
-                  required
-                  options={budgets}
                 />
               </div>
 

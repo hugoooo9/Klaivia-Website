@@ -5,10 +5,8 @@ export async function POST(req: Request) {
     const {
       name,
       email,
-      role,
       company,
       companySize,
-      budget,
       service,
       message,
     } = await req.json();
@@ -17,10 +15,8 @@ export async function POST(req: Request) {
     if (
       !name ||
       !email ||
-      !role ||
       !company ||
       !companySize ||
-      !budget ||
       !service ||
       !message
     ) {
@@ -65,10 +61,8 @@ export async function POST(req: Request) {
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
           <tr><td style="padding:8px 0;color:#A1A1AA;width:160px;">Nom</td><td style="padding:8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#A1A1AA;">Email</td><td style="padding:8px 0;"><a href="mailto:${escapeHtml(email)}" style="color:#A855F7;">${escapeHtml(email)}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#A1A1AA;">Rôle</td><td style="padding:8px 0;">${escapeHtml(role)}</td></tr>
           <tr><td style="padding:8px 0;color:#A1A1AA;">Entreprise</td><td style="padding:8px 0;"><strong>${escapeHtml(company)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#A1A1AA;">Taille</td><td style="padding:8px 0;">${escapeHtml(companySize)}</td></tr>
-          <tr><td style="padding:8px 0;color:#A1A1AA;">Budget</td><td style="padding:8px 0;"><strong style="color:#A855F7;">${escapeHtml(budget)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#A1A1AA;">Service</td><td style="padding:8px 0;">${escapeHtml(service)}</td></tr>
         </table>
         <div style="margin-top:20px;padding:16px;background:#111111;border:1px solid #1E1E1E;border-radius:8px;">
@@ -79,13 +73,13 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    const text = `Nouvelle demande Klaivia\n\nNom: ${name}\nEmail: ${email}\nRôle: ${role}\nEntreprise: ${company}\nTaille: ${companySize}\nBudget: ${budget}\nService: ${service}\n\nMessage:\n${message}`;
+    const text = `Nouvelle demande Klaivia\n\nNom: ${name}\nEmail: ${email}\nEntreprise: ${company}\nTaille: ${companySize}\nService: ${service}\n\nMessage:\n${message}`;
 
     await transporter.sendMail({
       from: `"Klaivia Site" <${SMTP_USER}>`,
       to,
       replyTo: email,
-      subject: `Nouveau contact — ${name} (${company} • ${budget})`,
+      subject: `Nouveau contact — ${name} (${company})`,
       text,
       html,
     });
